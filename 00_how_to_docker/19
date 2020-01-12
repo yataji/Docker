@@ -1,0 +1,40 @@
+docker run -it --name Abathur -v ~/:/root -p 3000:3000 python:2-slim /bin/bash
+apt update -y
+apt upgrade -y
+pip install flask
+apt install vim -y
+mkdir -p app/templates
+vim app/app.py
+################## VIM EDITOR ####################
+#!/usr/local/bin/python
+# -*- coding: utf-8 -*-
+
+from flask import Flask
+from flask import render_template
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+	return render_template('index.html')
+	
+if __name__ == "__main__":
+	app.run(host="0.0.0.0", port=3000)
+##################################################
+
+vim app/templates/index.html
+################## VIM EDITOR ####################
+<!doctype html>
+
+<html>
+	<head>
+		<title>Welcome home</title>
+	</head>
+
+	<body>
+		<h1>Hello World!</h1>
+	</body>
+</html> 
+##################################################
+
+chmod +x app/app.py
+./app/app.py
